@@ -2,4 +2,15 @@ extends layout
 
 block content
   h1= title
-  p Welcome to #{title}
+  p Welcome to #[em The-Local-Library], a minimalistic website to keep tracks of all the books You've read.
+
+  h1 Book Info
+
+  p The library has the following record counts:
+
+  ul
+    li #[strong Books:] !{book_count}
+    li #[strong Copies:] !{book_instance_count}
+    li #[strong Copies available:] !{book_instance_available_count}
+    li #[strong Authors:] !{author_count}
+    li #[strong Genres:] !{genre_count}
