@@ -13,6 +13,7 @@
     "express": "~4.16.1",
     "express-async-handler": "^1.2.0",
     "http-errors": "~1.6.3",
+    "mongodb": "^6.0.0",
     "mongoose": "^7.5.0",
     "morgan": "~1.9.1",
     "pug": "2.0.0-beta11"

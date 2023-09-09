@@ -6,7 +6,7 @@ const logger = require('morgan');
 
 const mongoose = require('mongoose');
 mongoose.set("strictQuery", false);
-const mongoDB = "mongodb+srv://jeiolsatszd:theLibrary@thelibrary.kkezepe.mongodb.net/Local_library/?retryWrites=true&w=majority"
+const mongoDB = "mongodb+srv://jeiolsatszd:theLibrary@thelibrary.kkezepe.mongodb.net/?retryWrites=true&w=majority"
 
 main().catch((err)=> console.log(err));
 async function main(){

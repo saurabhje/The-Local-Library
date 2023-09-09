@@ -1,2 +1,0 @@
-mongodb+srv://jeiolsatszd:theLibrary@thelibrary.kkezepe.mongodb.net
-/Local_library/?retryWrites=true&w=majority
