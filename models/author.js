@@ -37,11 +37,11 @@ AuthorSchema.virtual("lifespan").get(function () {
 });
 
 AuthorSchema.virtual("formattedDOB").get(function () {
-  return DateTime.fromJSDate(this.date_of_birth).toISODate(); 
+  return DateTime.fromJSDate(this.date_of_birth).toLocaleString(DateTime.DATE_MED); 
 });
 
 AuthorSchema.virtual("formattedDOD").get(function () {
-  return DateTime.fromJSDate(this.date_of_death).toISODate(); 
+  return DateTime.fromJSDate(this.date_of_death).toLocaleString(DateTime.DATE_MED); 
 });
 
 
