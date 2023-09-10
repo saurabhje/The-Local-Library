@@ -52,18 +52,20 @@ exports.genre_create_post = [
     if (!errors.isEmpty()) {
       res.render("genre_form", {
         title: "Create Genre",
-        genre: genre,
+        genre,
         errors: errors.array(),
       });
       return;
     } else {
-      const genreExists = await Genre.findOne({ name: req.body.name }).exec();
-      if (genreExists) {
+        const genreExists = await Genre.findOne({ name: req.body.name })
+        .collation({ locale: "en", strength: 2 })
+        .exec();
+        if (genreExists) {
         res.redirect(genreExists.url);
-      } else {
+        } else {
         await genre.save();
         res.redirect(genre.url);
-      }
+        }
     }
   }),
 ];
