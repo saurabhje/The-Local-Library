@@ -58,16 +58,14 @@ exports.author_create_post = [
 
   body("date_of_birth", "Invalid date of birth")
     .optional({ values: "falsy" })
-    .isISO8601()
-    .toDate(),
+    .isISO8601(),
 
   body("date_of_death", "Invalid date of death")
     .optional({ values: "falsy" })
-    .isISO8601()
-    .toDate(),
+    .isISO8601(),
   
   asyncHandler( async(req,res,next) => {
-    const errors = req.validationResult();
+    const errors = validationResult(req);
 
     const author = new Author({
       first_name: req.body.first_name,
