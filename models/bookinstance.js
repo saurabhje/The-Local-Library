@@ -15,7 +15,7 @@ const BookInstanceSchema = new Schema({
   due_back: { type: Date, default: Date.now },
 });
 
-// Virtual for bookinstance's URL
+
 BookInstanceSchema.virtual("url").get(function () {
   return `/catalog/bookinstance/${this._id}`;
 });
@@ -23,8 +23,9 @@ BookInstanceSchema.virtual("url").get(function () {
 BookInstanceSchema.virtual("due_back_formatted").get(function (){
   return DateTime.fromJSDate(this.due_back).toLocaleString(DateTime.DATE_MED);
 });
+
 BookInstanceSchema.virtual("due_back_yyyy_mm_dd").get(function () {
-  return DateTime.fromJSDate(this.due_back).toISODate(); // format 'YYYY-MM-DD'
+  return DateTime.fromJSDate(this.due_back).toISODate(); 
 });
 
 
