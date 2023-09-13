@@ -211,6 +211,31 @@ exports.book_update_get = asyncHandler(async (req, res, next) => {
 });
 
 
-exports.book_update_post = asyncHandler(async (req, res, next) => {
-  res.send("NOT IMPLEMENTED: Book update POST");
-});
+exports.book_update_post = () => [
+  (req,res,next) => {
+    if(!req.body.genre instanceof array){
+      if(typeof req.body.genre == undefined){
+        req.body.genre = []
+      } else{
+        req.body.genre = new Array(req.body.genre);
+      }
+    }
+    next();
+  },
+
+  body("title", "Title must be specified")
+  .trim()
+  .isLength({min: 1})
+  .escape(),
+
+  body("summary", "Summary of the book must be provided")
+  .trim()
+  .isLength({min: 10})
+  .escape(),
+
+  
+
+  asyncHandler( async() => {
+
+  })
+];
