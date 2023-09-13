@@ -194,15 +194,13 @@ exports.book_update_get = asyncHandler(async (req, res, next) => {
     next(err);
   }
 
-  for( const genres in allgenres){
-    for(const book_g in book.genre){
-      if(genres._id.toString() == book_g._id.toString()){
-        genres.checked = "true";
-      }
+  for (const genre of allgenres) {
+    if (book.genre.indexOf(genre._id) > -1) {
+      genre.checked = "true";
     }
   }
 
-  res.render("book_update", {
+  res.render("book_form", {
     title: "Update Book",
     authors: author,
     genres: allgenres,
@@ -233,9 +231,49 @@ exports.book_update_post = () => [
   .isLength({min: 10})
   .escape(),
 
-  
+  body("author", "Author must not be empty.")
+  .trim()
+  .isLength({ min: 1 })
+  .escape(),
 
-  asyncHandler( async() => {
+  body("isbn", "ISBN must not be empty").trim().isLength({ min: 1 }).escape(),
+  body("genre.*").escape(),
 
-  })
+  asyncHandler(async (req, res, next) => {
+    const errors = validationResult(req);
+
+
+    const book = new Book({
+      title: req.body.title,
+      author: req.body.author,
+      summary: req.body.summary,
+      isbn: req.body.isbn,
+      genre: typeof req.body.genre === "undefined" ? [] : req.body.genre,
+      _id: req.params.id,
+    });
+
+    if (!errors.isEmpty()) {
+      const [allAuthors, allgenres] = await Promise.all([
+        Author.find().exec(),
+        Genre.find().exec(),
+      ]);
+
+      for (const genre of allgenres) {
+        if (book.genre.indexOf(genre._id) > -1) {
+          genre.checked = "true";
+        }
+      }
+      res.render("book_form", {
+        title: "Update Book",
+        authors: allAuthors,
+        genres: allgenres,
+        book: book,
+        errors: errors.array(),
+      });
+      return;
+    } else {
+      const updatedBook = await Book.findByIdAndUpdate(req.params.id, book, {});
+      res.redirect(updatedBook.url);
+    }
+  }),
 ];
