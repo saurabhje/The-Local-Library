@@ -1,13 +1,13 @@
-extends layout 
+extends layout
 
 block content
   h1= title
 
   ul
-    each author in author_list
-      li
-        a(href= author.url) #{author.name}
-        |  (#{author.formattedDOB} - #{author.formattedDOD})
+  each author in author_list
+    li
+      a(href=author.url) #{author.name}
+      |  (#{author.lifespan})
 
-    else
-      li there are no authors
+  else
+    li There are no authors.
