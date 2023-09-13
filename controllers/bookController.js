@@ -182,10 +182,35 @@ exports.book_delete_post = asyncHandler(async (req, res, next) => {
 
 
 exports.book_update_get = asyncHandler(async (req, res, next) => {
-  res.send("NOT IMPLEMENTED: Book update GET");
+  const [ book, author, allgenres ] = await Promise.all([
+    Book.findById(req.params.id).populate("author").populate("genre").exec(),
+    Author.find().exec(),
+    Genre.find().exec()
+  ]);
+
+  if(book == null ){
+    const err = new Error("Book not found");
+    err.status = 404;
+    next(err);
+  }
+
+  for( const genres in allgenres){
+    for(const book_g in book.genre){
+      if(genres._id.toString() == book_g._id.toString()){
+        genres.checked = "true";
+      }
+    }
+  }
+
+  res.render("book_update", {
+    title: "Update Book",
+    authors: author,
+    genres: allgenres,
+    book: book
+  });
 });
 
-// Handle book update on POST.
+
 exports.book_update_post = asyncHandler(async (req, res, next) => {
   res.send("NOT IMPLEMENTED: Book update POST");
 });
