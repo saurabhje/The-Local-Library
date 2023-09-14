@@ -212,9 +212,8 @@ exports.book_update_get = asyncHandler(async (req, res, next) => {
 
 
 
-// Handle book update on POST.
 exports.book_update_post = [
-  // Convert the genre to an array.
+
   (req, res, next) => {
     if (!(req.body.genre instanceof Array)) {
       if (typeof req.body.genre === "undefined") {
@@ -226,7 +225,6 @@ exports.book_update_post = [
     next();
   },
 
-  // Validate and sanitize fields.
   body("title", "Title must not be empty.")
     .trim()
     .isLength({ min: 1 })

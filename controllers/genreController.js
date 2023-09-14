@@ -73,7 +73,7 @@ exports.genre_create_post = [
 
 
 exports.genre_delete_get = asyncHandler(async (req, res, next) => {
-  res.send("NOT IMPLEMENTED: Genre delete GET");
+  
 });
 
 
