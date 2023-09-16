@@ -88,17 +88,17 @@ exports.bookinstance_delete_get = asyncHandler(async (req, res, next) => {
   res.send("NOT IMPLEMENTED: BookInstance delete GET");
 });
 
-// Handle BookInstance delete on POST.
+
 exports.bookinstance_delete_post = asyncHandler(async (req, res, next) => {
   res.send("NOT IMPLEMENTED: BookInstance delete POST");
 });
 
-// Display BookInstance update form on GET.
+
 exports.bookinstance_update_get = asyncHandler(async (req, res, next) => {
   res.send("NOT IMPLEMENTED: BookInstance update GET");
 });
 
-// Handle bookinstance update on POST.
+
 exports.bookinstance_update_post = asyncHandler(async (req, res, next) => {
   res.send("NOT IMPLEMENTED: BookInstance update POST");
 });
