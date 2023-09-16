@@ -165,7 +165,7 @@ exports.bookinstance_update_post = [
       return;
     } else{
       await BookInstance.findByIdAndUpdate(req.params.id, bookinstance)
-      res.redirect(bookInstance.url);
+      res.redirect(bookinstance.url);
     }
   })
 ];
