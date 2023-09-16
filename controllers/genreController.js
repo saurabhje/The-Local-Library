@@ -147,7 +147,7 @@ exports.genre_update_post = [
       return;
     } else{
       await Genre.findByIdAndUpdate(req.params.id, genre);
-      res.redirect("/catalog/genres");
+      res.redirect(genre.url);
     }
   })
 ];

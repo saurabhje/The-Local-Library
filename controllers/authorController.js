@@ -81,7 +81,7 @@ exports.author_create_post = [
         errors:  errors.array(),
       });
       return;
-    } else{      //not checking for duplicate authors in this Form, cause we can have authors with the same
+    } else{      
       await author.save();
       res.redirect(author.url);
     }
@@ -118,18 +118,70 @@ exports.author_delete_post = asyncHandler(async (req, res, next) => {
     });
     return;
   } else {
-    await Author.findByIdAndRemove(req.body.authorid);
+    await Author.findByIdAndRemove(req.body.id);
     res.redirect("/catalog/authors");
   }
 });
 
 
 exports.author_update_get = asyncHandler(async (req, res, next) => {
-  res.send("NOT IMPLEMENTED: Author update GET");
+  const author = await Author.findById(req.params.id).exec();
+  if (author === null) {
+    const err = new Error("Author not found");
+    err.status = 404;
+    return next(err);
+  }
+
+  res.render("author_form", { title: "Update Author", author: author });
 });
 
 
-exports.author_update_post = asyncHandler(async (req, res, next) => {
-  res.send("NOT IMPLEMENTED: Author update POST");
-});
-    
+exports.author_update_post = [
+
+  body("first_name")
+    .trim()
+    .isLength({ min: 1 })
+    .escape()
+    .withMessage("First name must be specified.")
+    .isAlphanumeric()
+    .withMessage("First name has non-alphanumeric characters."),
+  body("family_name")
+    .trim()
+    .isLength({ min: 1 })
+    .escape()
+    .withMessage("Family name must be specified.")
+    .isAlphanumeric()
+    .withMessage("Family name has non-alphanumeric characters."),
+  body("date_of_birth", "Invalid date of birth")
+    .optional({ values: "falsy" })
+    .isISO8601()
+    .toDate(),
+  body("date_of_death", "Invalid date of death")
+    .optional({ values: "falsy" })
+    .isISO8601()
+    .toDate(),
+
+  asyncHandler(async (req, res, next) => {
+    const errors = validationResult(req);
+
+    const author = new Author({
+      first_name: req.body.first_name,
+      family_name: req.body.family_name,
+      date_of_birth: req.body.date_of_birth,
+      date_of_death: req.body.date_of_death,
+      _id: req.params.id,
+    });
+
+    if (!errors.isEmpty()) {
+      res.render("author_form", {
+        title: "Update Author",
+        author: author,
+        errors: errors.array(),
+      });
+      return;
+    } else {
+      await Author.findByIdAndUpdate(req.params.id, author);
+      res.redirect(author.url);
+    }
+  }),
+];
