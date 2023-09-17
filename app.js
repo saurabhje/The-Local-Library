@@ -3,12 +3,13 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
+require('dotenv').config();
 
 const mongoose = require('mongoose');
 mongoose.set("strictQuery", false);
 
-const dev_db_url = "mongodb+srv://jeiolsatszd:theLibrary@thelibrary.kkezepe.mongodb.net/?retryWrites=true&w=majority"
-const mongoDB = process.env.MONGODB_URI || dev_db_url;
+
+const mongoDB = process.env.MONGODB_URI;
 
 main().catch((err)=> console.log(err));
 async function main(){
