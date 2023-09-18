@@ -118,7 +118,7 @@ exports.author_delete_post = asyncHandler(async (req, res, next) => {
     });
     return;
   } else {
-    await Author.findByIdAndRemove(req.body.id);
+    await Author.findByIdAndRemove(req.body.authorid);
     res.redirect("/catalog/authors");
   }
 });
