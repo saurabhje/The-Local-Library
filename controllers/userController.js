@@ -40,8 +40,10 @@ passport.use(
     }
   });
   
-
-exports.createUser = asyncHandler(async (req, res, next) => {
+exports.createUser_get = (req, res, next) => {
+    res.render("user_form", { title: "Sign Up!" })
+}
+exports.createUser_post = asyncHandler(async (req, res, next) => {
     try {
       const hashedPassword = await bcrypt.hash(req.body.password, 10);
   
