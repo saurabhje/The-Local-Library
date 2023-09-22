@@ -2,3 +2,8 @@ extends layout
 
 block content
  h1#{title}
+ form(method="POST" action="")
+  div.form-group
+    label(for="username") Username:
+    input#name.form-control(type="text" placeholder="kremlin.." name="username" value=(undefined===user ? '' : user.username) required="true")
+    label(for)
