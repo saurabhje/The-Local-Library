@@ -43,8 +43,7 @@ exports.setUserLocals = (req, res, next) => {
   res.locals.user = req.user;
   next();
 };
-
-
+isauthenticated();
 exports.createUser_get = (req, res, next) => {
   res.render("user_form", { title: "Sign Up!" });
 };
