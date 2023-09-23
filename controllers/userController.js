@@ -39,6 +39,11 @@ passport.deserializeUser(async (id, done) => {
     done(err);
   }
 });
+exports.setUserLocals = (req, res, next) => {
+  res.locals.user = req.user;
+  next();
+};
+
 
 exports.createUser_get = (req, res, next) => {
   res.render("user_form", { title: "Sign Up!" });
@@ -62,9 +67,12 @@ exports.createUser_post = asyncHandler(async (req, res, next) => {
 exports.loginUser_get = (req, res, next) =>{
   res.render("user_login", { title: "Log In kid!" });
 }
-exports.loginUser_post = asyncHandler(async (req, res, next) => {
+
+exports.loginUser_post = (req, res, next) => {
   passport.authenticate("local", {
     successRedirect: "/catalog",
     failureRedirect: "/user/login",
-  });
-});
+  })(req, res, next);
+};
+
+

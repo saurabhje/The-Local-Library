@@ -18,7 +18,7 @@ html(lang='en')
               li
                 a(href='/user/create') Sign Up
               li
-                a(href='user/login') Log In
+                a(href='/user/login') Log In
               li
                 a(href='/catalog') Home
               li
@@ -31,14 +31,17 @@ html(lang='en')
                 a(href='/catalog/bookinstances') All book-instances
               li
                 hr
-              li
-                a(href='/catalog/author/create') Create new author
-              li
-                a(href='/catalog/genre/create') Create new genre
-              li
-                a(href='/catalog/book/create') Create new book
-              li
-                a(href='/catalog/bookinstance/create') Create new book instance (copy)
-
+              if user
+                li
+                  a(href='/catalog/author/create') Create new author
+                li
+                  a(href='/catalog/genre/create') Create new genre
+                li
+                  a(href='/catalog/book/create') Create new book
+                li
+                  a(href='/catalog/bookinstance/create') Create new book instance (copy)
+              else
+                li
+                  | Hii
         div(class='col-sm-10')
           block content

@@ -7,6 +7,7 @@ const compression = require("compression");
 const helmet = require("helmet");
 const session = require("express-session");
 const passport = require("passport");
+const userController = require('./controllers/userController')
 
 require('dotenv').config();
 
@@ -40,7 +41,7 @@ app.use(
   session({
     secret: "your-secret-key",
     resave: false,
-    saveUninitialized: false,
+    saveUninitialized: true,
   })
 );
 app.use(logger('dev'));
@@ -58,13 +59,13 @@ app.use(
 );
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(userController.setUserLocals);
 
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/user', userRouter);
 app.use('/catalog', catalogRouter);
-
 
 
 app.use(function(req, res, next) {
