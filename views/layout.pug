@@ -16,10 +16,6 @@ html(lang='en')
           block sidebar
             ul(class='sidebar-nav')
               li
-                a(href='/user/create') Sign Up
-              li
-                a(href='/user/login') Log In
-              li
                 a(href='/catalog') Home
               li
                 a(href='/catalog/books') All books
@@ -42,6 +38,9 @@ html(lang='en')
                   a(href='/catalog/bookinstance/create') Create new book instance (copy)
               else
                 li
-                  | Hii
+                  button.btn.btn-primary(action="user/create") Sign Up
+                li
+                  button.btn.btn-primary(action="/user/login") Log In
+                
         div(class='col-sm-10')
           block content
