@@ -41,7 +41,6 @@ passport.deserializeUser(async (id, done) => {
 });
 
 exports.createUser_get = (req, res, next) => {
-  console.log("userget");
   res.render("user_form", { title: "Sign Up!" });
 };
 
@@ -60,9 +59,12 @@ exports.createUser_post = asyncHandler(async (req, res, next) => {
   }
 });
 
-exports.loginUser = asyncHandler(async (req, res, next) => {
+exports.loginUser_get = (req, res, next) =>{
+  res.render("user_login", { title: "Log In kid!" });
+}
+exports.loginUser_post = asyncHandler(async (req, res, next) => {
   passport.authenticate("local", {
-    successRedirect: "/",
-    failureRedirect: "/",
+    successRedirect: "/catalog",
+    failureRedirect: "/user/login",
   });
 });

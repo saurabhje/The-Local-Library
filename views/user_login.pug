@@ -8,7 +8,7 @@ block content
       input#name.form-control(type="text" placeholder="kremlin.." name="username" value=(undefined === user ? '' : user.username) required="true")
       label(for="password") Password: 
       input#name.form-control(type="password" placeholder="kremlin@1223" name="password" required="true")
-    button.btn.btn-primary(type='submit') Submit
+    button.btn.btn-primary(type='submit') Log In
     if errors
       ul
         each error in errors
