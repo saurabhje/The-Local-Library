@@ -3,11 +3,8 @@ const router = express.Router();
 const userController = require("../controllers/userController");
 
 
+router.get("/create",  userController.createUser_get);
+router.post("/create", userController.createUser_post);
 
-router.get("/sign-up", userController.createUser);
-
-router.post('/sign-up',  function(req,res, next){
-  res.send('You are so cool');
-});
 
 module.exports = router;

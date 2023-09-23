@@ -1,14 +1,15 @@
 extends layout
 
 block content
- h1#{title}
- form(method="POST" action="")
-  div.form-group
-    label(for="username") Username:
-    input#name.form-control(type="text" placeholder="kremlin.." name="username" value=(undefined===user ? '' : user.username) required="true")
-    label(for="password") Password: 
-    input#name.form-control(type="password" placeholder="kremlin@1223" name="password" required="true")
- if errors
-   ul
-    for error in errors
-     li!= error.msg
+  h1= title
+  form(method="POST" action="/user/create")
+    div.form-group
+      label(for="username") Username:
+      input#name.form-control(type="text" placeholder="kremlin.." name="username" value=(undefined === user ? '' : user.username) required="true")
+      label(for="password") Password: 
+      input#name.form-control(type="password" placeholder="kremlin@1223" name="password" required="true")
+    button.btn.btn-primary(type='submit') Submit
+    if errors
+      ul
+        each error in errors
+          li= error.msg

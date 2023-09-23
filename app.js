@@ -5,7 +5,6 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const compression = require("compression");
 const helmet = require("helmet");
-const express = require("express");
 const session = require("express-session");
 const passport = require("passport");
 
@@ -63,8 +62,9 @@ app.use(passport.session());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/catalog', catalogRouter);
 app.use('/user', userRouter);
+app.use('/catalog', catalogRouter);
+
 
 
 app.use(function(req, res, next) {
