@@ -75,6 +75,15 @@ exports.loginUser_post = (req, res, next) => {
   })(req, res, next);
 };
 
+exports.logout_User =  (req, res, next) =>{
+  req.logout((err) => {
+    if(err){
+      return next(err)
+    }
+    res.redirect("/catalog");
+  });
+}
+
 
 
 
