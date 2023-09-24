@@ -10,8 +10,8 @@ block content
   p #[strong Genre:]
     each val, index in book.genre
       a(href=val.url) #{val.name}
-      if index < book.genre.length - 1 
-        |, 
+      if index < book.genre.length - 1
+        |,
 
   div(style='margin-left:20px;margin-top:20px')
     h4 Copies
@@ -26,7 +26,7 @@ block content
         p.text-warning #{val.status}
       p #[strong Imprint:] #{val.imprint}
       if val.status!='Available'
-        p #[strong Due back:] #{val.due_back_formatted}
+        p #[strong Due back:] #{val.due_back}
       p #[strong Id:]
         a(href=val.url) #{val._id}
 
@@ -35,6 +35,6 @@ block content
 
   hr
   p
-    a(href=book.url+'/delete') Delete Book 
+    a(href=book.url+'/delete') Delete Book
   p
     a(href=book.url+'/update') Update Book
