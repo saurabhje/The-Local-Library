@@ -56,13 +56,14 @@ exports.createUser_post = asyncHandler(async (req, res, next) => {
       username: req.body.username,
       password: hashedPassword,
     });
-    const result = await user.save();
-    res.redirect("/");
+    await user.save();
+    res.redirect("/user/login");
   } catch (err) {
     console.error(err);
     return next(err);
   }
 });
+
 
 exports.loginUser_get = (req, res, next) =>{
   res.render("user_login", { title: "Log In kid!" });

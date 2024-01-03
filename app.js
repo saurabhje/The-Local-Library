@@ -1,4 +1,4 @@
-const createError = require('http-errors');
+require('dotenv').config();
 const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
@@ -10,18 +10,21 @@ const session = require("express-session");
 const passport = require("passport");
 const userController = require('./controllers/userController')
 
-require('dotenv').config();
 
 const mongoose = require('mongoose');
 mongoose.set("strictQuery", false);
-
-
 const mongoDB = process.env.MONGODB_URI;
 
 main().catch((err)=> console.log(err));
-async function main(){
-  await mongoose.connect(mongoDB);
+async function main() {
+  await mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
 }
+
+const database = mongoose.connection
+database.once('connected', () => {
+    console.log('Database Connected');
+})
+
 
 const RateLimit = require("express-rate-limit");
 const limiter = RateLimit({
@@ -68,10 +71,6 @@ app.use('/', indexRouter);
 app.use('/user', userRouter);
 app.use('/catalog', catalogRouter);
 
-
-app.use(function(req, res, next) {
-  next(createError(404));
-});
 
 
 app.listen(port, "0.0.0.0", () => {

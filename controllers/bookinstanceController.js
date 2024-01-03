@@ -16,20 +16,23 @@ exports.bookinstance_list = asyncHandler(async (req, res, next) => {
 
 
 exports.bookinstance_detail = asyncHandler(async (req, res, next) => {
-  const bookinstance = await BookInstance.findById(req.params.id).populate("book").exec();
-
-  if(bookinstance === null){
+  console.log('rxecuted')
+  console.log(req.params.id)
+  const bookInstance = await BookInstance.findById(req.params.id)
+    .populate("book")
+    .exec();
+  console.log(bookInstance)
+  if (bookInstance === null) {
     const err = new Error("Book copy not found");
     err.status = 404;
-    next(err);
-  };
+    return next(err);
+  }
 
-  res.render("instance_detail", {
-    title: "Book Instance Detail",
-    bookinstance: bookinstance,
-  })
+  res.render("bookinstance_detail", {
+    title: "Book:",
+    bookinstance: bookInstance,
+  });
 });
-
 
 exports.bookinstance_create_get = asyncHandler(async (req, res, next) => {
   const allBooks = await Book.find({}, "title").exec();
@@ -68,18 +71,18 @@ exports.bookinstance_create_post = [
 
     if(!errors.isEmpty()){
       const allBooks = await Book.find({}, "title").exec();
-
+    
       res.render("bookinstance_form", {
-        title: "Create a bookinstance",
+        title: "Update bookinstance",
         book_list: allBooks,
-        selected_book : BookInstance.book._id,
+        selected_book: req.body.book,  // Corrected line
         errors: errors.array(),
-        bookinstance: bookInstance,
+        bookinstance: bookinstance,
       });
       return;
-    } else{
-      await bookInstance.save();
-      res.redirect(bookInstance.url);
+    } else {
+      await BookInstance.findByIdAndUpdate(req.params.id, bookinstance);
+      res.redirect(bookinstance.url);
     }
   })
 ]

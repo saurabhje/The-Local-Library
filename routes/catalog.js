@@ -53,5 +53,5 @@ router.get("/bookinstance/:id/update", ensureAuthenticated, book_instance_contro
 router.post("/bookinstance/:id/update", ensureAuthenticated, book_instance_controller.bookinstance_update_post);
 
 router.get("/bookinstances", book_instance_controller.bookinstance_list);
-router.get("bookinstance/:id", book_instance_controller.bookinstance_detail);
+router.get("/bookinstance/:id", book_instance_controller.bookinstance_detail);
 module.exports = router;

@@ -1,10 +1,10 @@
 {
-  "name": "express-locallibrary-tutorial",
+  "name": "the-local-locallibrary",
   "version": "0.0.0",
   "private": true,
   "scripts": {
     "start": "node app.js",
-    "devstart": "nodemon ./bin/www"
+    "dev": "nodemon app.js"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
@@ -21,7 +21,7 @@
     "helmet": "^7.0.0",
     "http-errors": "~1.6.3",
     "luxon": "^3.4.3",
-    "mongodb": "^6.0.0",
+    "mongodb": "^6.3.0",
     "mongoose": "^7.5.1",
     "morgan": "~1.9.1",
     "passport": "^0.6.0",
