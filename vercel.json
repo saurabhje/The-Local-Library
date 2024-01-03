@@ -8,8 +8,12 @@
   ],
   "routes": [
     {
-      "src": "./catalog",
-      "dest": "/"
+      "src": "/catalog/(.*)",
+      "dest": "/$1"
+    },
+    {
+      "src": "/",
+      "dest": "/app.js"
     }
   ]
 }
