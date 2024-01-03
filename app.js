@@ -3,6 +3,7 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
+const port = 3000
 const compression = require("compression");
 const helmet = require("helmet");
 const session = require("express-session");
@@ -73,12 +74,8 @@ app.use(function(req, res, next) {
 });
 
 
-app.use(function(err, req, res, next) {
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
-
-  res.status(err.status || 500);
-  res.render('error');
+app.listen(port, "0.0.0.0", () => {
+  console.log(`Server is running on http://localhost:${port}`);
 });
 
 module.exports = app;
