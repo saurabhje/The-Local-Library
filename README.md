@@ -9,11 +9,7 @@ The Local Library is a simple Node.js Express application designed to manage boo
 ```
 |-- TheLocalLibrary
     |-- controllers
-    |   |-- bookController.js
-    |   |-- booknstanceController.js
-    |   |-- genreController.js
-    |   |-- userController.js
-    |   |-- authorController.js
+    |
     |-- models
     |   |-- book.js
     |   |-- bookinstance.js
@@ -28,25 +24,7 @@ The Local Library is a simple Node.js Express application designed to manage boo
     |   |-- catalog.js
     |   |-- user.js
     |-- views
-    |   |-- layout.pug
-    |   |-- error.pug
-    |   |-- index.pug
-    |   |-- bookinstance_delete.pug
-    |   |-- bookinstance_form.pug
-    |   |-- bookinstance_detail.pug
-    |   |-- bookinstance_list.pug
-    |   |-- genre_delete.pug
-    |   |-- genre_detail.pug
-    |   |-- genre_form.pug
-    |   |-- genre_list.pug
-    |   |-- book_delete.pug
-    |   |-- book_detail.pug
-    |   |-- book_form.pug
-    |   |-- book_list.pug
-    |   |-- author_delete.pug
-    |   |-- author_form.pug
-    |   |-- author_detail.pug
-    |   |-- author_list.pug
+    |
     |-- app.js
 ```
 
@@ -64,13 +42,13 @@ The Local Library is a simple Node.js Express application designed to manage boo
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/your-username/TheLocalLibrary.git
+   git clone https://github.com/your-username/The-Local-Library.git
    ```
 
 2. Navigate to the project directory:
 
    ```bash
-   cd TheLocalLibrary
+   cd The-Local-Library
    ```
 
 3. Install dependencies:
