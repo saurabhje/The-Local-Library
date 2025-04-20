@@ -73,8 +73,6 @@ app.use('/catalog', catalogRouter);
 
 
 
-app.listen(port, "0.0.0.0", () => {
-  console.log(`Server is running on http://localhost:${port}`);
-});
+app.listen(3000);
 
 module.exports = app;

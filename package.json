@@ -1,8 +1,8 @@
 {
   "name": "the-local-locallibrary",
   "version": "0.0.1",
-  "private": true,
   "description": "Library Management Tool",
+  "main" : "app.js",
   "scripts": {
     "start": "node app.js",
     "dev": "nodemon app.js"
